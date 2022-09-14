@@ -28,6 +28,9 @@ themes <- read_csv("data/themes.csv.gz")
 inventories <- read_csv("data/inventories.csv.gz")
 parts <- read_csv("data/parts.csv.gz")
 sets <- read_csv("data/sets.csv.gz")
+inventory_parts <- read_csv("data/inventory_parts.csv.gz")
+
+
 
 
 ### Upload to SQL DB
@@ -53,7 +56,10 @@ dbGetQuery(con,"select count(*) as row_count from parts")
 dbWriteTable(con, "sets",sets ,overwrite=TRUE)
 dbListFields(con,"sets")
 dbGetQuery(con,"select count(*) as row_count from sets")
-
+#
+dbWriteTable(con, "inventory_parts",inventory_parts ,overwrite=TRUE)
+dbListFields(con,"inventory_parts")
+dbGetQuery(con,"select count(*) as row_count from inventory_parts")
 
 dbDisconnect(con)
 
